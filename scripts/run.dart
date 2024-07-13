@@ -1,17 +1,20 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:archive/archive.dart';
 import 'package:http/http.dart' as http;
 
+/// 更新mock数据，格式化代码，更新版本号
 void main() async {
-  const gz =
-      "https://github.com/intoli/user-agents/raw/main/src/user-agents.json.gz";
-  await downloadAndExtractGzip(gz);
+  await downloadAndExtractGzip();
+  await formatCode();
+  await updateVersion();
 }
 
-Future<void> downloadAndExtractGzip(String url) async {
+/// 更新mock数据
+Future<void> downloadAndExtractGzip() async {
+  const url =
+      "https://github.com/intoli/user-agents/raw/main/src/user-agents.json.gz";
   // 下载文件
   final response = await http.get(Uri.parse(url));
   if (response.statusCode == 200) {
@@ -50,8 +53,38 @@ Future<void> downloadAndExtractGzip(String url) async {
 
     await File(filename).writeAsString(buffer.toString());
 
-    log("文件生成成功");
+    print("数据更新成功");
   } else {
     throw Exception('无法下载文件: ${response.statusCode}');
   }
+}
+
+/// 代码格式化
+Future<void> formatCode() async {
+  var result = await Process.run('dart', ['format', '.']);
+  // 如果有错误，打印错误信息
+  if (result.stderr.isNotEmpty) {
+    throw Exception(result.stderr);
+  }
+  print('代码格式化完成');
+}
+
+// 修改版本号
+Future<void> updateVersion() async {
+  const filePath = './pubspec.yaml';
+  final file = File(filePath);
+  var content = await file.readAsString();
+
+  RegExp regExp = RegExp(r'version:\s*.+');
+
+  content = content.replaceFirstMapped(regExp, (match) {
+    final version = match.group(0)?.toString() ?? '0.0.1';
+    final versions = version.split('.');
+    final lastVersionNumber = int.parse(versions.last) + 1;
+    versions[versions.length - 1] = '$lastVersionNumber';
+    return versions.join('.');
+  });
+
+  await file.writeAsString(content);
+  print('版本修改完成');
 }
