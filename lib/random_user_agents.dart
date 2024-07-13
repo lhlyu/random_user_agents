@@ -21,6 +21,7 @@ class RandomUserAgents {
     );
   }
 
+  /// a private named constructor
   RandomUserAgents._internal(this.filter, this._list);
 
   /// Return a random user agent string

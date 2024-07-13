@@ -1,11 +1,10 @@
 name: random_user_agents
 description: "A dart library for generating random user agents.随机生成User-Agent."
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/lhlyu/random_user_agents
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
-
 
 dev_dependencies:
   flutter_lints: ^3.0.0
