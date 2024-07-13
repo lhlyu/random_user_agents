@@ -13,8 +13,7 @@ void main() async {
 
 /// 更新mock数据
 Future<void> downloadAndExtractGzip() async {
-  const url =
-      "https://github.com/intoli/user-agents/raw/main/src/user-agents.json.gz";
+  const url = "https://github.com/intoli/user-agents/raw/main/src/user-agents.json.gz";
   // 下载文件
   final response = await http.get(Uri.parse(url));
   if (response.statusCode == 200) {
@@ -82,7 +81,9 @@ Future<void> updateVersion() async {
     final versions = version.split('.');
     final lastVersionNumber = int.parse(versions.last) + 1;
     versions[versions.length - 1] = '$lastVersionNumber';
-    return versions.join('.');
+    final newVersion = versions.join('.');
+    print('${version.replaceFirst('version: ', '')} -> ${newVersion.replaceFirst('version: ', '')}');
+    return newVersion;
   });
 
   await file.writeAsString(content);
