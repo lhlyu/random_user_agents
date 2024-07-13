@@ -1,6 +1,6 @@
 name: random_user_agents
-description: "A flutter package for generating random user agents."
-version: 0.0.1
+description: "A flutter package for generating random user agents.随机生成User-Agent."
+version: 0.0.2
 homepage: https://github.com/lhlyu/flutter_random_user_agents
 
 environment:

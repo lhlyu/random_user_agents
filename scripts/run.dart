@@ -30,6 +30,7 @@ Future<void> downloadAndExtractGzip(String url) async {
     StringBuffer buffer = StringBuffer();
 
     buffer.write("part of 'random_user_agents.dart';\n\n");
+    buffer.write("/// mock data\n");
     buffer.write("const mockUserAgents = [\n");
 
     Set<String> set = {};
