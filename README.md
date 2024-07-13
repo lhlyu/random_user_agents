@@ -1,6 +1,6 @@
 # Random_User_Agents
 
-[![pub package](https://img.shields.io/pub/v/flutter_icons.svg)](https://pub.dev/packages/random_user_agents)
+[![pub package](https://img.shields.io/pub/v/random_user_agents.svg)](https://pub.dev/packages/random_user_agents)
 
 A flutter package for generating random user agents.
 随机生成User-Agent.
