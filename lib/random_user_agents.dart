@@ -20,7 +20,7 @@ class RandomUserAgents {
   factory RandomUserAgents(BoolFunctionType filter) {
     return RandomUserAgents._internal(
       filter,
-      mockUserAgents.where(filter).toList(),
+      _mockUserAgents.where(filter).toList(),
     );
   }
 
@@ -29,7 +29,7 @@ class RandomUserAgents {
   /// Return a random user agent string
   static String random({String pattern = ""}) {
     Random random = Random();
-    return mockUserAgents[random.nextInt(mockUserAgents.length)];
+    return _mockUserAgents[random.nextInt(_mockUserAgents.length)];
   }
 
   /// Return a random user agent string

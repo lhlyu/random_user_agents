@@ -13,7 +13,8 @@ void main() async {
 
 /// 更新mock数据
 Future<void> downloadAndExtractGzip() async {
-  const url = "https://github.com/intoli/user-agents/raw/main/src/user-agents.json.gz";
+  const url =
+      "https://github.com/intoli/user-agents/raw/main/src/user-agents.json.gz";
   // 下载文件
   final response = await http.get(Uri.parse(url));
   if (response.statusCode == 200) {
@@ -34,7 +35,7 @@ Future<void> downloadAndExtractGzip() async {
 
     buffer.write("part of 'random_user_agents.dart';\n\n");
     buffer.write("/// mock data\n");
-    buffer.write("const mockUserAgents = [\n");
+    buffer.write("const _mockUserAgents = [\n");
 
     Set<String> set = {};
 
@@ -68,6 +69,16 @@ Future<void> formatCode() async {
   print('代码格式化完成');
 }
 
+// 修改CHANGELOG.md
+Future<void> updateChangelog(String version) async {
+  const filePath = './CHANGELOG.md';
+  final file = File(filePath);
+  var content = await file.readAsString();
+  content = '## $version\n\n- update\n\n$content';
+  await file.writeAsString(content);
+  print('修改CHANGELOG完成');
+}
+
 // 修改版本号
 Future<void> updateVersion() async {
   const filePath = './pubspec.yaml';
@@ -76,16 +87,23 @@ Future<void> updateVersion() async {
 
   RegExp regExp = RegExp(r'version:\s*.+');
 
+  var nVersion = '';
+
   content = content.replaceFirstMapped(regExp, (match) {
     final version = match.group(0)?.toString() ?? '0.0.1';
     final versions = version.split('.');
     final lastVersionNumber = int.parse(versions.last) + 1;
     versions[versions.length - 1] = '$lastVersionNumber';
     final newVersion = versions.join('.');
-    print('${version.replaceFirst('version: ', '')} -> ${newVersion.replaceFirst('version: ', '')}');
+    nVersion = newVersion.replaceFirst('version: ', '');
+    print(
+      '${version.replaceFirst('version: ', '')} -> $nVersion',
+    );
     return newVersion;
   });
 
   await file.writeAsString(content);
   print('版本修改完成');
+
+  await updateChangelog(nVersion);
 }
