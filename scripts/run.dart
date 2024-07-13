@@ -6,7 +6,8 @@ import 'package:archive/archive.dart';
 import 'package:http/http.dart' as http;
 
 void main() async {
-  const gz = "https://github.com/intoli/user-agents/raw/main/src/user-agents.json.gz";
+  const gz =
+      "https://github.com/intoli/user-agents/raw/main/src/user-agents.json.gz";
   await downloadAndExtractGzip(gz);
 }
 

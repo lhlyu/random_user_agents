@@ -18,7 +18,10 @@ class RandomUserAgents {
   /// Return an instance of RandomUserAgents using a private named constructor.
   /// The instance is created with a filter function and a filtered list of mock user agents.
   factory RandomUserAgents(BoolFunctionType filter) {
-    return RandomUserAgents._internal(filter, mockUserAgents.where(filter).toList());
+    return RandomUserAgents._internal(
+      filter,
+      mockUserAgents.where(filter).toList(),
+    );
   }
 
   RandomUserAgents._internal(this.filter, this._mocks);
