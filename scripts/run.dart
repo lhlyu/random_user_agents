@@ -4,14 +4,14 @@ import 'dart:io';
 import 'package:archive/archive.dart';
 import 'package:http/http.dart' as http;
 
-/// 更新mock数据，格式化代码，更新版本号
+/// 更新数据，格式化代码，更新版本号
 void main() async {
   await downloadAndExtractGzip();
   await formatCode();
   await updateVersion();
 }
 
-/// 更新mock数据
+/// 更新数据
 Future<void> downloadAndExtractGzip() async {
   const url =
       "https://github.com/intoli/user-agents/raw/main/src/user-agents.json.gz";
@@ -34,8 +34,8 @@ Future<void> downloadAndExtractGzip() async {
     StringBuffer buffer = StringBuffer();
 
     buffer.write("part of 'random_user_agents.dart';\n\n");
-    buffer.write("/// mock data\n");
-    buffer.write("const _mockUserAgents = [\n");
+    buffer.write("/// user agents data\n");
+    buffer.write("const _userAgents = [\n");
 
     Set<String> set = {};
 
@@ -49,7 +49,7 @@ Future<void> downloadAndExtractGzip() async {
     }
     buffer.write("];\n");
 
-    const filename = './lib/mock.dart';
+    const filename = './lib/user_agents.dart';
 
     await File(filename).writeAsString(buffer.toString());
 

@@ -2,39 +2,36 @@ library random_user_agents;
 
 import 'dart:math';
 
-part 'mock.dart';
-
-/// Define a type for a function that takes a string parameter and returns a bool.
-typedef BoolFunctionType = bool Function(String value);
+part 'user_agents.dart';
 
 /// Random UserAgents
 class RandomUserAgents {
   /// a filter function
-  final BoolFunctionType filter;
+  final bool Function(String value) filter;
 
-  /// a filtered list of mock user agents
-  final List<String> _mocks;
+  /// a filtered list of user agents
+  final List<String> _list;
 
   /// Return an instance of RandomUserAgents using a private named constructor.
-  /// The instance is created with a filter function and a filtered list of mock user agents.
-  factory RandomUserAgents(BoolFunctionType filter) {
+  /// The instance is created with a filter function and a filtered list of user agents.
+  factory RandomUserAgents(bool Function(String value) filter) {
     return RandomUserAgents._internal(
       filter,
-      _mockUserAgents.where(filter).toList(),
+      _userAgents.where(filter).toList(),
     );
   }
 
-  RandomUserAgents._internal(this.filter, this._mocks);
+  RandomUserAgents._internal(this.filter, this._list);
 
   /// Return a random user agent string
   static String random({String pattern = ""}) {
     Random random = Random();
-    return _mockUserAgents[random.nextInt(_mockUserAgents.length)];
+    return _userAgents[random.nextInt(_userAgents.length)];
   }
 
   /// Return a random user agent string
   String getUserAgent() {
     Random random = Random();
-    return _mocks[random.nextInt(_mocks.length)];
+    return _list[random.nextInt(_list.length)];
   }
 }
