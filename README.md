@@ -2,14 +2,14 @@
 
 [![pub package](https://img.shields.io/pub/v/random_user_agents.svg)](https://pub.dev/packages/random_user_agents)
 
-A flutter package for generating random user agents.
+A dart library for generating random user agents.
 随机生成User-Agent.
 
 
 ## Getting started
 
 ```shell 
-flutter pub add random_user_agents
+dart pub add random_user_agents
 ```
 
 ## Usage
