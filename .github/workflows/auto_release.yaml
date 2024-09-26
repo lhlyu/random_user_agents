@@ -37,6 +37,7 @@ jobs:
           git config --local user.email "${{ secrets.MY_EMAIL }}"
           git config --local user.name "${{ secrets.MY_NAME }}"
           git remote set-url origin https://${{ github.actor }}:${{ secrets.TOKEN }}@github.com/${{ github.repository }}
+          git add .
           git commit -m "${{ env.version }}"
           git push
 
