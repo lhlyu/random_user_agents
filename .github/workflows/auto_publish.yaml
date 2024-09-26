@@ -8,6 +8,8 @@ on:
 
 jobs:
   publish:
+    permissions:
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - name: 拉取代码
@@ -30,11 +32,8 @@ jobs:
         run: |-
           echo "version: ${{ env.version }}"
 
-      - name: Publish - dry run
-        run: dart pub publish --dry-run
-
       - name: Publish to pub.dev
-        run: dart pub publish -f
+        run: dart pub publish --force
 
       - name: 提交代码
         run: |
