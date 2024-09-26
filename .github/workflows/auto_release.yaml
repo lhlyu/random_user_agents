@@ -33,19 +33,22 @@ jobs:
         run: |-
           echo "version: ${{ env.version }}"
 
-      - name: 提交代码
-        run: |
-          git config --local user.email ${{ secrets.MY_EMAIL }}
-          git config --local user.name ${{ secrets.MY_NAME }}
-          git add .
-          git commit -m "${{ env.version }}"
-          git push
+      - name: 发布到 pub.dev
+        run: dart pub publish --force
 
-
-      - name: Release
-        uses: ncipollo/release-action@v1
-        with:
-          tag: v${{ env.version }}
-          draft: false
-          allowUpdates: true
-          token: ${{ secrets.TOKEN }}
+#      - name: 提交代码
+#        run: |
+#          git config --local user.email ${{ secrets.MY_EMAIL }}
+#          git config --local user.name ${{ secrets.MY_NAME }}
+#          git add .
+#          git commit -m "${{ env.version }}"
+#          git push
+#
+#
+#      - name: Release
+#        uses: ncipollo/release-action@v1
+#        with:
+#          tag: v${{ env.version }}
+#          draft: false
+#          allowUpdates: true
+#          token: ${{ secrets.TOKEN }}
