@@ -106,7 +106,7 @@ Future<void> updateVersion() async {
   });
 
   await file.writeAsString(content);
-  print('版本修改完成');
+  print('版本修改完成: $nVersion');
 
   await updateChangelog(nVersion);
 }
