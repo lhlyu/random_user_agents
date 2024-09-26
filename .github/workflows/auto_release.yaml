@@ -22,8 +22,8 @@ jobs:
       - name: 安装依赖
         run: dart pub get
 
-      - name: 更新数据
-        run: dart run scripts/run.dart
+#      - name: 更新数据
+#        run: dart run scripts/run.dart
 
       - name: 获取版本号
         run: |
@@ -32,6 +32,9 @@ jobs:
       - name: 打印版本号
         run: |-
           echo "version: ${{ env.version }}"
+
+      - name: add token
+        run: dart pub token add https://pub.dev
 
       - name: 发布到 pub.dev
         run: dart pub publish --force
