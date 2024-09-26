@@ -5,6 +5,9 @@ import 'package:archive/archive.dart';
 import 'package:http/http.dart' as http;
 
 /// 更新数据，格式化代码，更新版本号
+/// 执行后，发布包
+/// 检查是否有任何发布前的问题：dart pub publish --dry-run
+/// dart pub publish
 void main() async {
   await downloadAndExtractGzip();
   await formatCode();
