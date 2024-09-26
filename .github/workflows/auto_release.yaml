@@ -34,9 +34,8 @@ jobs:
 
       - name: 提交代码
         run: |
-          git config --local user.email "${{ secrets.MY_EMAIL }}"
-          git config --local user.name "${{ secrets.MY_NAME }}"
-          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git config --local user.email ${{ secrets.MY_EMAIL }}
+          git config --local user.name ${{ secrets.MY_NAME }}
           git add .
           git commit -m "${{ env.version }}"
           git push
