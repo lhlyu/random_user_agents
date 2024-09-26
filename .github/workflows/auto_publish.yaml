@@ -2,9 +2,6 @@ on:
   schedule:
     # 每个月15号进行发布
     - cron: '0 0 15 * *'
-  push:
-    branches:
-      - master
 
 jobs:
   publish:
@@ -22,8 +19,8 @@ jobs:
       - name: 安装依赖
         run: dart pub get
 
-#      - name: 更新数据
-#        run: dart run scripts/run.dart
+      - name: 更新数据
+        run: dart run scripts/run.dart
 
       - name: 获取版本号
         run: |
@@ -41,19 +38,19 @@ jobs:
           skipTests: true
           force: true
 
-#      - name: 提交代码
-#        run: |
-#          git config --local user.email ${{ secrets.MY_EMAIL }}
-#          git config --local user.name ${{ secrets.MY_NAME }}
-#          git add .
-#          git commit -m "${{ env.version }}"
-#          git push
-#
-#
-#      - name: Release
-#        uses: ncipollo/release-action@v1
-#        with:
-#          tag: v${{ env.version }}
-#          draft: false
-#          allowUpdates: true
-#          token: ${{ secrets.TOKEN }}
+      - name: 提交代码
+        run: |
+          git config --local user.email ${{ secrets.MY_EMAIL }}
+          git config --local user.name ${{ secrets.MY_NAME }}
+          git add .
+          git commit -m "${{ env.version }}"
+          git push
+
+
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: v${{ env.version }}
+          draft: false
+          allowUpdates: true
+          token: ${{ secrets.TOKEN }}
