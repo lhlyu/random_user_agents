@@ -32,9 +32,6 @@ jobs:
         run: |-
           echo "version: ${{ env.version }}"
 
-      - name: Publish to pub.dev
-        run: dart pub publish --force
-
       - name: 提交代码
         run: |
           git config --local user.email "${{ vars.MY_EMAIL }}"
