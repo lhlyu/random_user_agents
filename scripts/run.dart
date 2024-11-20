@@ -77,7 +77,7 @@ Future<void> updateChangelog(String version) async {
   const filePath = './CHANGELOG.md';
   final file = File(filePath);
   var content = await file.readAsString();
-  content = '## $version\n\n- update\n\n$content';
+  content = '## $version\n\n- user agent data update\n\n$content';
   await file.writeAsString(content);
   print('修改CHANGELOG完成');
 }

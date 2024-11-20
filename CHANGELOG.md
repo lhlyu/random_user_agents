@@ -1,18 +1,18 @@
 ## 1.0.6
 
-- update
+- user agent data update
 
 ## 1.0.5
 
-- update
+- user agent data update
 
 ## 1.0.4
 
-- update
+- user agent data update
 
 ## 1.0.3
 
-- update
+- user agent data update
 
 ## 1.0.2
 
@@ -24,4 +24,4 @@
 
 ## 1.0.0
 
-- release.
+- release
