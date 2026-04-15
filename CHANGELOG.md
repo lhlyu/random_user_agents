@@ -1,3 +1,7 @@
+## 1.0.23
+
+- user agent data update
+
 ## 1.0.22
 
 - user agent data update
